@@ -76,7 +76,7 @@ public class BoardController {
 		return "Hello, World!!";
 	}
 
-	// 게시글 작성
+	// 게시글 작성 // API이름: POST /boards
 	@RequestMapping(value = "/boards", method = RequestMethod.POST)
 	public Board addBoard(@RequestBody Board board, HttpServletRequest req) throws NoSuchAlgorithmException {
 		board.setIp(getIp(req));
@@ -215,7 +215,7 @@ public class BoardController {
 		return reply;
 	}
 
-	// 댓글 삭제 hard-delete
+	// 댓글 삭제 hard-delete // API이름: DELETE /boards/{boardId}/replies/{id}
 	@RequestMapping(value = "/boards/{boardId}/replies/{id}", method = RequestMethod.DELETE)
 	// 1.RequestBody가 원시타입 데이터가 올때, String으로 받아서 원하는 원시타입으로 변환해서 쓰면됨
 	public boolean removeReply(@PathVariable long boardId, @PathVariable long id, @RequestBody String password,
@@ -276,7 +276,7 @@ public class BoardController {
 		return board;
 	}
 
-	// 1건 조회
+	// 1건 조회 // API이름: GET /boards/{id}
 	@RequestMapping(value = "/boards/{id}", method = RequestMethod.GET)
 	public Board getSingleBoard(@PathVariable long id, HttpServletResponse res) {
 		Board board = boardRepo.findById(id).orElse(null);
@@ -308,7 +308,7 @@ public class BoardController {
 				.body(Files.readAllBytes(FILE_PATH.resolve(attachment.getFileName())));
 	}
 
-	// 게시글 조회수 1 증가
+	// 게시글 조회수 1 증가 // API이름: PATCH /boards/{id}
 	@RequestMapping(value = "/boards/{id}", method = RequestMethod.PATCH)
 	public Board modifyTodoMemo(@PathVariable("id") long id, HttpServletResponse res) {
 
