@@ -1,0 +1,72 @@
+server:
+  port: 3737
+
+# nohup java -jar -Dspring.profiles.active=prod myworkspace-0.0.1-SNAPSHOT.jar > myworkspace.log &  '>' 의미는 '>' 왼쪽명령의 출력결과가 '>' 오른쪽 파일에 쌓임 
+# tail -f auth.log 로그파일 모니터링
+  
+spring:
+  application:
+    name: lolcommunity
+  profiles:
+    active: default
+  servlet:
+  #multipart  파일처리 조건
+    multipart:
+      max-file-size: -1
+      max-request-size: -1
+  #database 접속정보
+  datasource:
+    #javadatabase connection :mysql // 엔드포인트/데이터베이스?옵션                                                                      #rewrite... 서버 프로그램 구현위한 쿼리                              
+    url: jdbc:mysql://mysql-1.c8a1dqdn29yx.ap-northeast-2.rds.amazonaws.com/lolcommunity?useUnicode=true&characterEncoding=utf-8&rewriteBatchedStatements=true
+  #윈도우 프리퍼런스 제너럴 워크스페이스 아래쪽 텍스트파일 인코딩  아더  utf8
+    username: admin
+    password: password123!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true  #데이터처리할 때 sql문을 보여줌
+    generate-ddl: true #클래스 정의에 따른 테이블 및 객체 생성
+    #ddl data definition language: create, alter, drop 수행해주는것
+    properties: # 서버프로그램 설정 시작
+      hibernate:
+        '[generate_statistics]': true # 통계정보
+        '[order_inserts]': true
+        '[order_updates]': true
+        jdbc: 
+          '[batch_size]': 5     # 서버프로그램 설정 jpa 종료
+  rabbitmq:
+    host: ec2-3-34-136-174.ap-northeast-2.compute.amazonaws.com
+    username: rabbitmq 
+    password: password123
+#eureka:
+#  client:
+#    service-url:
+#        defaultZone: http://192.168.0.38:8761/eureka/ # 유레카 로컬ip 주소
+#  instance:
+#    hostname: 192.168.0.19
+       
+#       spring.jpa.properties.hibernate.jdbc.batch_size=5
+#      spring.jpa.properties.hibernate.order_inserts=true
+#      spring.jpa.properties.hibernate.order_updates=true
+       
+       
+#  redis:
+#    host: 127.0.0.1
+#    port: 6379
+
+# 추가적인 속성
+#api:
+#  base-path: http://localhost:8080
+ 
+# 서버프로그램 구현
+ 
+  
+--- #프로필 추가시 구분자   위는 기본 프로필적용  gradlew build 하고 java로 jar파일 실행시킬때 -Dspring 옵션으로 어떤 프로필을 적용시킬건지 지정가능
+spring:
+  profiles: prod
+#  redis:
+#    host: 3.34.136.174
+#    port: 6379
+#    password: foobared
+
+#api:
+#  base-path: http://ec2-3-34-136-174.ap-northeast-2.compute.amazonaws.com:8080
