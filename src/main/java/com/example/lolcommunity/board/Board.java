@@ -56,9 +56,6 @@ public class Board {
 	@OneToMany
 	@JoinColumn(name = "boardId")
 	private List<Reply> reply; // 댓글수, replyCnt 뽑아내야함
-	@OneToMany
-	@JoinColumn(name = "boardId")
-	private List<IpList> likeCnt; // 삭제 예정
 
 	@OneToMany
 	@JoinColumn(name = "boardId")

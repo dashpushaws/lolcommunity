@@ -35,22 +35,19 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 public class BoardController {
-	private AttachmentRepository attachmentRepo;
+	private AttachmentRepository attachmentRepo; // 리포지토리 선언하면 의존성 주입해라
 	private BoardRepository boardRepo;
 	private ReplyRepository replyRepo;
-	private IpListRepository ipListRepo; ////////// 리포지토리 선언하면 의존성 주입해라
 	private UpListRepository upListRepo;
 	private DownListRepository downListRepo;
 	private final Path FILE_PATH = Paths.get("attachment");
-//	private final Path FILE_PATH_REPLY = Paths.get("reply");
 
 	// 생성자
 	@Autowired
-	public BoardController(AttachmentRepository attachmentRepo, BoardRepository boardRepo, IpListRepository ipListRepo,
-			ReplyRepository replyRepo, UpListRepository upListRepo, DownListRepository downListRepo) {
+	public BoardController(AttachmentRepository attachmentRepo, BoardRepository boardRepo, ReplyRepository replyRepo,
+			UpListRepository upListRepo, DownListRepository downListRepo) {
 		this.attachmentRepo = attachmentRepo;
 		this.boardRepo = boardRepo;
-		this.ipListRepo = ipListRepo;
 		this.upListRepo = upListRepo;
 		this.downListRepo = downListRepo;
 		this.replyRepo = replyRepo;
