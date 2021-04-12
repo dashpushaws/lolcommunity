@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +22,7 @@ public class SummonerSearchController {
 	private SummonerRepository summonerRepo;
 
 	// 소환사 목록 조회
-	@RequestMapping(value = "/summoner-list", method = RequestMethod.GET)
+	@RequestMapping(value = "/summoners", method = RequestMethod.GET)
 	public List<Summoner> getSummonerList() {
 		List<Summoner> summoner = summonerRepo.findAll();
 		return summoner;

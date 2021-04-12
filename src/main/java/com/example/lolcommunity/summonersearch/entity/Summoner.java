@@ -20,5 +20,6 @@ public class Summoner {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String name;
-
+	private String createdTime;
+//	private long order; // 리포에서 프론트로 가져갈때 최근 10개 가져갈때 쓰려고
 }

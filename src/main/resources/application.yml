@@ -1,12 +1,10 @@
 server:
   port: 3737
-
-# nohup java -jar -Dspring.profiles.active=prod myworkspace-0.0.1-SNAPSHOT.jar > myworkspace.log &  '>' 의미는 '>' 왼쪽명령의 출력결과가 '>' 오른쪽 파일에 쌓임 
+# nohup java -jar -Dspring.profiles.active=prod lolcommunity-0.0.1-SNAPSHOT.jar > lolcommunity.log &  '>' 의미는 '>' 왼쪽명령의 출력결과가 '>' 오른쪽 파일에 쌓임 
 # tail -f auth.log 로그파일 모니터링
-  
 spring:
   application:
-    name: lolcommunity
+    name: summoner-search-and-lol-community
   profiles:
     active: default
   servlet:
@@ -14,7 +12,6 @@ spring:
     multipart:
       max-file-size: -1
       max-request-size: -1
-  #database 접속정보
   datasource:
     #javadatabase connection :mysql // 엔드포인트/데이터베이스?옵션                                                                      #rewrite... 서버 프로그램 구현위한 쿼리                              
     url: jdbc:mysql://mysql-1.c8a1dqdn29yx.ap-northeast-2.rds.amazonaws.com/lolcommunity?useUnicode=true&characterEncoding=utf-8&rewriteBatchedStatements=true
@@ -34,20 +31,17 @@ spring:
         jdbc: 
           '[batch_size]': 5     # 서버프로그램 설정 jpa 종료
   rabbitmq:
+#    template:
+#      receive-timeout: 3000
     host: ec2-3-34-136-174.ap-northeast-2.compute.amazonaws.com
     username: rabbitmq 
     password: password123
-#eureka:
-#  client:
-#    service-url:
-#        defaultZone: http://192.168.0.38:8761/eureka/ # 유레카 로컬ip 주소
-#  instance:
-#    hostname: 192.168.0.19
-       
-#       spring.jpa.properties.hibernate.jdbc.batch_size=5
-#      spring.jpa.properties.hibernate.order_inserts=true
-#      spring.jpa.properties.hibernate.order_updates=true
-       
+eureka:
+  client:
+    service-url:
+        defaultZone: http://192.168.0.38:8761/eureka/ # 유레카 로컬ip 주소
+  instance:
+    hostname: 192.168.0.19
        
 #  redis:
 #    host: 127.0.0.1
@@ -57,16 +51,16 @@ spring:
 #api:
 #  base-path: http://localhost:8080
  
-# 서버프로그램 구현
- 
-  
 --- #프로필 추가시 구분자   위는 기본 프로필적용  gradlew build 하고 java로 jar파일 실행시킬때 -Dspring 옵션으로 어떤 프로필을 적용시킬건지 지정가능
 spring:
   profiles: prod
-#  redis:
-#    host: 3.34.136.174
-#    port: 6379
-#    password: foobared
-
+eureka:
+  client:
+    service-url:
+      defaultZone: http://3.36.90.155:8761/eureka/ # 조성진 ec2 유레카 주소 
+  instance:
+#    hostname: 192.168.0.19
+    hostname: 3.34.136.174
+    
 #api:
 #  base-path: http://ec2-3-34-136-174.ap-northeast-2.compute.amazonaws.com:8080
