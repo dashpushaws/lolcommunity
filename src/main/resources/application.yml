@@ -36,12 +36,12 @@ spring:
     host: ec2-3-34-136-174.ap-northeast-2.compute.amazonaws.com
     username: rabbitmq 
     password: password123
-eureka:
-  client:
-    service-url:
-        defaultZone: http://192.168.0.38:8761/eureka/ # 유레카 로컬ip 주소
-  instance:
-    hostname: 192.168.0.19
+#eureka:
+#  client:
+#    service-url:
+#        defaultZone: http://192.168.0.38:8761/eureka/ # 유레카 로컬ip 주소
+#  instance:
+#    hostname: 192.168.0.19
        
 #  redis:
 #    host: 127.0.0.1
