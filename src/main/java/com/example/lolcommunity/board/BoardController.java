@@ -70,7 +70,7 @@ public class BoardController {
 		String ip = getIp(req);
 		System.out.println(ip);
 
-		return "Hello, World!!!!!!";
+		return "Hello, World!!!!!!!!";
 	}
 
 	// 게시글 작성 // API이름: POST /boards
