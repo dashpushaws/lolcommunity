@@ -307,7 +307,7 @@ public class BoardController {
 
 	// 게시글 조회수 1 증가 // API이름: PATCH /boards/{id}
 	@RequestMapping(value = "/boards/{id}", method = RequestMethod.PATCH)
-	public Board modifyTodoMemo(@PathVariable("id") long id, HttpServletResponse res) {
+	public Board increaseHinCnt(@PathVariable("id") long id, HttpServletResponse res) {
 
 		Board board = boardRepo.findById(id).orElse(null);
 
