@@ -49,7 +49,7 @@ public class SummonerSearchService {
 //	@Scheduled(cron = "초 분 시 일 월 요일 (년도)") // @Scheduled를 적용하는 메소드는 매개변수 사용불가
 //	@Scheduled(cron = "* * 2 * * *") // 새벽 2시마다 실행
 //	@Scheduled(cron = "* */5 * * * *") // 프로그램 실행 후, 5분마다 실행(빌드용)
-	@Scheduled(cron = "0 */1 * * * *")
+	@Scheduled(cron = "0 */10 * * * *")
 	public void receiveMessage2() {
 
 		System.out.println(new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date()));
